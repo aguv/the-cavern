@@ -9,8 +9,20 @@ const db = new Sequelize(`postgres://${HOST_NAME}/${DB_NAME}`, {
 
 const User = require("./models/User")(db, Sequelize);
 const Role = require('./models/Role')(db, Sequelize);
+const Post = require('./models/Post')(db, Sequelize);
+const Thread = require('./models/Thread')(db, Sequelize);
 
 db.ROLES = ["user", "admin", "moderator"];
+
+Post.belongsTo(User);
+User.hasMany(Post);
+
+Post.belongsTo(Thread);
+Thread.hasMany(Post);
+
+Thread.belongsTo(User);
+User.hasMany(Thread);
+
 
 Role.belongsToMany(User, {
     through: "user_roles",

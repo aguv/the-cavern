@@ -2,7 +2,6 @@ const router = require('express').Router();
 const db = require('../db');
 const authJwt = require('../middleware/authJwt');
 const userController = require('../controllers/userController');
-const Role = db.models.roles;
 
 router.get('/all', userController.allAccess);
 
