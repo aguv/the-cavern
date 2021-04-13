@@ -3,7 +3,6 @@ const { SECRET } = process.env;
 const User = db.models.users;
 const Role = db.models.roles;
 const Op = require('sequelize').Op;
-
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
@@ -37,7 +36,7 @@ controller.signUp = async (req, res, next) => {
         }
 
     } catch (e) {
-        next(e)
+        next(e);
     }
 }
 

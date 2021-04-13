@@ -1,19 +1,18 @@
+db = require('../db');
+const User = db.models.users;
+const Role = db.models.roles;
+
 const controller = {};
 
-controller.allAccess = (req, res) => {
-    res.status(200).send("Public Content.");
-};
 
-controller.userBoard = (req, res) => {
-    res.status(200).send("User Content.");
-};
-
-controller.adminBoard = (req, res) => {
-    res.status(200).send("Admin Content.");
-};
-
-controller.moderatorBoard = (req, res) => {
-    res.status(200).send("Moderator Content.");
-};
+controller.getUserByToken = async (req, res, next) => {
+    try {
+        const user = await User.findByPk(req.user.id);
+        res.status(200).send({...user.dataValues, password: ''});
+        
+    } catch (e) {
+        next(e)
+    }
+}
 
 module.exports = controller;

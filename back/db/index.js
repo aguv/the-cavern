@@ -11,6 +11,7 @@ const User = require("./models/User")(db, Sequelize);
 const Role = require('./models/Role')(db, Sequelize);
 const Post = require('./models/Post')(db, Sequelize);
 const Thread = require('./models/Thread')(db, Sequelize);
+const Category = require('./models/Category')(db, Sequelize);
 
 db.ROLES = ["user", "admin", "moderator"];
 
@@ -23,6 +24,8 @@ Thread.hasMany(Post);
 Thread.belongsTo(User);
 User.hasMany(Thread);
 
+Thread.belongsTo(Category);
+Category.hasMany(Thread);
 
 Role.belongsToMany(User, {
     through: "user_roles",
