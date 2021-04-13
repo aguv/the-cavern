@@ -48,7 +48,7 @@ const CategoryView = ({match}) => {
                                 <p>{thread.title}</p>
                                 <p className='text-sm italic'>{thread.user.username}, {thread.createdAt.slice(0, 10)}</p>
                             </div>
-                            <p>{thread.posts.length}</p>
+                            <p className='self-center'>{thread.posts.length}</p>
                         </Link>
                     </div>
                 ))}

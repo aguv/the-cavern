@@ -10,13 +10,14 @@ import {useDispatch} from 'react-redux';
 import {useEffect} from 'react';
 import ThreadView from "./components/ThreadView";
 
+
 function App() {
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(tryPersistUser())
       .then( _ => console.log(_ => 'Persisting user...'));
-      
+
   }, [])
 
   return (

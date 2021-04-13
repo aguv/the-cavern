@@ -19,17 +19,15 @@ controller.getPosts = async (req, res, next) => {
 
 controller.createPost = async (req, res, next) => {
     try {
-        const {title, content, threadId} = req.body;
+        const {content, threadId} = req.body;
 
         const post = await Post.create({
-            title,
             content,
             threadId,
             userId: req.user.id
         })
 
         res.status(201).send(post)
-
     } catch (e) {
         next(e);
     }
